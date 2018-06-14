@@ -73,6 +73,14 @@ app.post("/store",function(request,response)
 
 })
 
+//static file paths
 app.use(express.static(__dirname+'/public/styles'));
 app.use(express.static(__dirname+"/public/scripts"));
 app.use(express.static(__dirname+"/bower_components"));
+app.use(express.static(__dirname+'/public/amodule'));
+
+app.get("/restclient",function(request,response)
+{
+    response.sendFile(__dirname+"/public/views/angular.html");
+   
+});
