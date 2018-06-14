@@ -21,18 +21,31 @@ mod.controller("rest",['httpservice','$scope',function(httpservice,$scope)      
     
     $scope.readpattern=function(){
 //        console.log($scope.pattern);
-
-        httpservice.getCompanies($scope.pattern);
+        
+        httpservice.getCompanies($scope.pattern).then(             //modified this to create
+        
+        (data)=>{$scope.companies=data;
+        $scope.$digest();
+         },
+    (error)=>{
+        $scope.companies=[];
+        $scope.$digest();
+    }
+        )
     }
 
 }]);
 
-mod.service('httpservice',['$http',function($http){
+mod.service('httpservice',['$http',function($http){                         
     this.getCompanies=function(pattern){
-    $http.get("http://localhost:4780/mongo-api/cnames/"+pattern).then(
+        return new Promise(function(resolve,reject)
+        {
+        $http.get("http://localhost:4780/mongo-api/cnames/"+pattern).then(
         
-        (data)=>{console.log(data)},
-        (error)=>{console.log(error)}
+        (response)=>{resolve(response.data);},
+        (error)=>{reject([]);}
         );
+
+        });
 }
 }]);
