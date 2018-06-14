@@ -1,0 +1,14 @@
+{
+  "name": "nodeproject-12june",
+  "version": "1.0.0",
+  "description": "testproject",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "ratnesh",
+  "license": "ISC",
+  "dependencies": {
+    "nodeapp-120618": "^1.0.0"
+  }
+}
